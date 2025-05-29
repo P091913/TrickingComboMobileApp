@@ -28,7 +28,38 @@
             </CollectionView>
 
             <Label Text="Current Tricks in Combo:" FontAttributes="Bold" FontSize="18" />
-            <VerticalStackLayout x:Name="TricksStackLayout" />
+
+            <!-- New CollectionView for showing current combo tricks with drag reorder -->
+<CollectionView x:Name="ComboTricksView"
+                ItemsSource="{Binding ComboTricks}"
+                SelectionMode="None"
+                HeightRequest="300">
+    <CollectionView.ItemTemplate>
+        <DataTemplate>
+            <HorizontalStackLayout Padding="5" Spacing="10" VerticalOptions="Center">
+                <Label Text="{Binding Name}" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="StartAndExpand" />
+                
+                <Button Text="Up" 
+                        CommandParameter="{Binding .}"
+                        Clicked="OnMoveUpClicked"
+                        WidthRequest="50" />
+                <Button Text="Down" 
+                        CommandParameter="{Binding .}"
+                        Clicked="OnMoveDownClicked"
+                        WidthRequest="50" />
+
+                <Button Text="Remove"
+                        BackgroundColor="Red"
+                        TextColor="White"
+                        CornerRadius="10"
+                        CommandParameter="{Binding .}"
+                        Clicked="OnRemoveTrickClicked" />
+            </HorizontalStackLayout>
+        </DataTemplate>
+    </CollectionView.ItemTemplate>
+</CollectionView>
+
+
 
             <Button Text="Save Combo" BackgroundColor="Blue" TextColor="White" Clicked="OnSaveClicked" />
         </VerticalStackLayout>
