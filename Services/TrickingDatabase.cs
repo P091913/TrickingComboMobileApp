@@ -15,7 +15,22 @@ public class TrickingDatabase
     }
 
     public Task<List<Combo>> GetCombosAsync() => _database.Table<Combo>().ToListAsync();
-    public Task<int> SaveComboAsync(Combo combo) => _database.InsertAsync(combo);
+    public async Task UpdateComboAsync(Combo combo)
+    {
+        await _database.UpdateAsync(combo);
+    }
+    public Task<int> SaveComboAsync(Combo combo)
+    {
+        if (combo.Id != 0)
+        {
+            return _database.UpdateAsync(combo); // Update existing combo
+        }
+        else
+        {
+            return _database.InsertAsync(combo); // Insert new combo
+        }
+    }
+
     public Task<List<Trick>> GetTricksAsync() => _database.Table<Trick>().ToListAsync();
     public Task<int> SaveTrickAsync(Trick trick) => _database.InsertAsync(trick);
 }

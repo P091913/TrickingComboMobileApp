@@ -2,6 +2,7 @@ using Microsoft.Maui.Controls;
 using TrickingApp.Models;
 using TrickingApp.Services;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TrickingApp;
 
@@ -15,10 +16,8 @@ public partial class ComboDetailsPage : ContentPage
     public ComboDetailsPage(TrickingDatabase database, Combo combo)
     {
         InitializeComponent();
-
         _database = database;
         _combo = combo;
-
         LoadDataAsync();
     }
 
@@ -29,7 +28,6 @@ public partial class ComboDetailsPage : ContentPage
         ComboTitleLabel.Text = _combo.Title;
         ComboDescriptionLabel.Text = _combo.Description;
 
-        // Parse combo trick IDs from CSV string
         _comboTricks = new List<Trick>();
 
         if (!string.IsNullOrWhiteSpace(_combo.TrickIds))
@@ -49,86 +47,79 @@ public partial class ComboDetailsPage : ContentPage
         RefreshTrickListUI();
     }
 
+    private void OnTrickSearchTextChanged(object sender, TextChangedEventArgs e)
+    {
+        string query = e.NewTextValue?.ToLower() ?? "";
+        var filtered = _allTricks
+            .Where(t => t.Name.ToLower().Contains(query) && !_comboTricks.Any(ct => ct.Id == t.Id))
+            .ToList();
+
+        TrickSuggestionsView.ItemsSource = filtered;
+    }
+
+    private void OnTrickSelected(object sender, SelectionChangedEventArgs e)
+    {
+        if (e.CurrentSelection.FirstOrDefault() is not Trick selectedTrick)
+            return;
+
+        _comboTricks.Add(selectedTrick);
+        RefreshTrickListUI();
+
+        TrickSearchBar.Text = "";
+        TrickSuggestionsView.SelectedItem = null;
+        TrickSuggestionsView.ItemsSource = null;
+    }
+
     private void RefreshTrickListUI()
     {
         TricksStackLayout.Children.Clear();
 
         foreach (var trick in _comboTricks)
         {
-            var trickLayout = new HorizontalStackLayout { Spacing = 10 };
+            var row = new HorizontalStackLayout { Spacing = 10 };
+            var nameLabel = new Label { Text = trick.Name, FontAttributes = FontAttributes.Bold };
+            var descLabel = new Label { Text = trick.Description, FontSize = 12, TextColor = Colors.Gray };
 
-            var trickLabel = new Label { Text = trick.Name, VerticalOptions = LayoutOptions.Center };
-
-            var removeButton = new Button
+            var removeBtn = new Button
             {
                 Text = "Remove",
                 BackgroundColor = Colors.Red,
                 TextColor = Colors.White,
-                VerticalOptions = LayoutOptions.Center
+                CornerRadius = 10
             };
 
-            removeButton.Clicked += (s, e) =>
+            removeBtn.Clicked += (s, e) =>
             {
                 _comboTricks.Remove(trick);
                 RefreshTrickListUI();
             };
 
-            trickLayout.Add(trickLabel);
-            trickLayout.Add(removeButton);
+            var trickInfo = new VerticalStackLayout();
+            trickInfo.Add(nameLabel);
+            trickInfo.Add(descLabel);
 
-            TricksStackLayout.Add(trickLayout);
+            row.Add(trickInfo);
+            row.Add(removeBtn);
+
+            TricksStackLayout.Children.Add(row);
         }
-    }
-
-    private void OnAddTrickClicked(object sender, EventArgs e)
-    {
-        // Show a picker to add trick from all tricks that are NOT already in combo
-        var picker = new Picker { Title = "Select a Trick to Add" };
-
-        foreach (var trick in _allTricks)
-        {
-            if (!_comboTricks.Exists(t => t.Id == trick.Id))
-                picker.Items.Add(trick.Name);
-        }
-
-        var addButton = new Button { Text = "Add", BackgroundColor = Colors.Blue, TextColor = Colors.White };
-
-        var pickerLayout = new HorizontalStackLayout { Spacing = 10 };
-
-        pickerLayout.Add(picker);
-        pickerLayout.Add(addButton);
-
-        TricksStackLayout.Add(pickerLayout);
-
-        addButton.Clicked += (s, e) =>
-        {
-            if (picker.SelectedIndex < 0)
-                return;
-
-            var selectedTrickName = picker.Items[picker.SelectedIndex];
-            var selectedTrick = _allTricks.Find(t => t.Name == selectedTrickName);
-
-            if (selectedTrick != null)
-            {
-                _comboTricks.Add(selectedTrick);
-
-                // Remove the picker layout after adding
-                TricksStackLayout.Children.Remove(pickerLayout);
-
-                RefreshTrickListUI();
-            }
-        };
     }
 
     private async void OnSaveClicked(object sender, EventArgs e)
     {
-        // Update combo trick ids csv
-        _combo.TrickIds = string.Join(",", _comboTricks.Select(t => t.Id.ToString()));
-        
-        await _database.SaveComboAsync(_combo);
+        _combo.TrickIds = string.Join(",", _comboTricks.Select(t => t.Id));
+
+        // If combo already exists (has an ID), update it instead of creating new one
+        if (_combo.Id > 0)
+        {
+            await _database.UpdateComboAsync(_combo);
+        }
+        else
+        {
+            await _database.SaveComboAsync(_combo);
+        }
 
         await DisplayAlert("Success", "Combo updated successfully!", "OK");
-
         await Navigation.PopAsync();
     }
 }

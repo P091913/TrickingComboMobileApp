@@ -2,18 +2,34 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TrickingApp.ComboDetailsPage"
-             Title="Combo Details">
+             Title="Edit Combo">
 
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15">
             <Label x:Name="ComboTitleLabel" FontAttributes="Bold" FontSize="24" />
             <Label x:Name="ComboDescriptionLabel" FontSize="14" TextColor="Gray" />
 
-            <Label Text="Tricks:" FontAttributes="Bold" FontSize="18" />
+            <Label Text="Add Trick to Combo" FontAttributes="Bold" />
+            <SearchBar x:Name="TrickSearchBar"
+                       Placeholder="Search for a trick..."
+                       TextChanged="OnTrickSearchTextChanged" />
 
-            <StackLayout x:Name="TricksStackLayout" />
+            <CollectionView x:Name="TrickSuggestionsView"
+                            SelectionMode="Single"
+                            SelectionChanged="OnTrickSelected">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout Padding="5">
+                            <Label Text="{Binding Name}" FontAttributes="Bold" />
+                            <Label Text="{Binding Description}" FontSize="12" TextColor="Gray" />
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
-            <Button Text="+ Add Trick" BackgroundColor="Green" TextColor="White" Clicked="OnAddTrickClicked" />
+            <Label Text="Current Tricks in Combo:" FontAttributes="Bold" FontSize="18" />
+            <VerticalStackLayout x:Name="TricksStackLayout" />
+
             <Button Text="Save Combo" BackgroundColor="Blue" TextColor="White" Clicked="OnSaveClicked" />
         </VerticalStackLayout>
     </ScrollView>
