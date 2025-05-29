@@ -14,9 +14,20 @@
 
             <Label Text="Tricks in Combo" FontAttributes="Bold" />
 
-            <VerticalStackLayout x:Name="TrickPickersLayout" />
+            <Label Text="Search Trick to Add" FontAttributes="Bold" />
+<SearchBar x:Name="TrickSearchBar" Placeholder="Type trick name..." TextChanged="OnTrickSearchTextChanged" />
 
-            <Button Text="➕ Add Trick" Clicked="OnAddTrickPickerClicked" />
+<CollectionView x:Name="TrickSuggestionsView" SelectionMode="Single" SelectionChanged="OnTrickSelected">
+    <CollectionView.ItemTemplate>
+        <DataTemplate>
+            <Label Text="{Binding Name}" Padding="10" />
+        </DataTemplate>
+    </CollectionView.ItemTemplate>
+</CollectionView>
+
+<Label Text="Selected Tricks" FontAttributes="Bold" />
+<VerticalStackLayout x:Name="SelectedTricksLayout" />
+
 
             <Button Text="Save Combo" Clicked="OnSaveComboClicked" BackgroundColor="Green" TextColor="White" />
 

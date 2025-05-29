@@ -6,8 +6,8 @@
     x:Class="TrickingApp.AppShell">
 
     <FlyoutItem Title="Tricking">
-        <ShellContent ContentTemplate="{DataTemplate local:AddTrickPage}" Icon="dotnet_bot.png" />
-        <ShellContent Title="Create Combo" ContentTemplate="{DataTemplate local:CreateComboPage}" />
-        <ShellContent Title="View Combos" ContentTemplate="{DataTemplate local:ViewCombosPage}" />
+        <ShellContent ContentTemplate="{DataTemplate local:AddTrickPage}" Icon="create.png" />
+        <ShellContent ContentTemplate="{DataTemplate local:CreateComboPage}" Icon="combo.png" />
+        <ShellContent ContentTemplate="{DataTemplate local:ViewCombosPage}" Icon="view.png" />
     </FlyoutItem>
 </Shell>
