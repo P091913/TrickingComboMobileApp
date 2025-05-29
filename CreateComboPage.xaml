@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             x:Class="TrickingApp.CreateComboPage"
+             Title="Create Combo"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            
+            <Label Text="Combo Title" FontAttributes="Bold" />
+            <Entry x:Name="ComboTitleEntry" Placeholder="Enter combo title" />
+
+            <Label Text="Combo Description" FontAttributes="Bold" />
+            <Editor x:Name="ComboDescriptionEditor" Placeholder="Enter combo description" HeightRequest="100" />
+
+            <Label Text="Tricks in Combo" FontAttributes="Bold" />
+
+            <VerticalStackLayout x:Name="TrickPickersLayout" />
+
+            <Button Text="➕ Add Trick" Clicked="OnAddTrickPickerClicked" />
+
+            <Button Text="Save Combo" Clicked="OnSaveComboClicked" BackgroundColor="Green" TextColor="White" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

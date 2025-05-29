@@ -1,0 +1,23 @@
+﻿<!-- MainPage.xaml -->
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="TrickingApp.MainPage"
+    Title="Tricking App">
+
+    <SwipeView>
+    <SwipeView.LeftItems>
+        <SwipeItems Mode="Reveal">
+            <SwipeItem Text="View Combos" Command="{Binding ViewCombosCommand}" BackgroundColor="LightGray"/>
+            <SwipeItem Text="Add Trick" Command="{Binding AddTrickCommand}" BackgroundColor="LightGray"/>
+        </SwipeItems>
+    </SwipeView.LeftItems>
+
+    <StackLayout Padding="20">
+        <Label Text="Welcome to Tricking App!" FontSize="24" />
+        <Button Text="Create Combo" Command="{Binding CreateComboCommand}" />
+    </StackLayout>
+</SwipeView>
+
+
+</ContentPage>
