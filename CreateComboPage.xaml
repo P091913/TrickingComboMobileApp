@@ -1,35 +1,93 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TrickingApp.CreateComboPage"
              Title="Create Combo"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+             BackgroundColor="#F5F5F5">
+
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="15">
-            
-            <Label Text="Combo Title" FontAttributes="Bold" />
-            <Entry x:Name="ComboTitleEntry" Placeholder="Enter combo title" />
+        <VerticalStackLayout Padding="20" Spacing="20">
 
-            <Label Text="Combo Description" FontAttributes="Bold" />
-            <Editor x:Name="ComboDescriptionEditor" Placeholder="Enter combo description" HeightRequest="100" />
+            <!-- Combo Title Card -->
+            <Frame Padding="15" BackgroundColor="White" CornerRadius="12" HasShadow="True">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Combo Title"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="#333" />
+                    
+                    <Entry x:Name="ComboTitleEntry"
+                           Placeholder="Enter combo title"
+                           FontSize="14"
+                           BackgroundColor="#F0F0F0"
+                           HeightRequest="40"
+                           TextColor="#000" />
+                </VerticalStackLayout>
+            </Frame>
 
-            <Label Text="Tricks in Combo" FontAttributes="Bold" />
+            <!-- Combo Description Card -->
+            <Frame Padding="15" BackgroundColor="White" CornerRadius="12" HasShadow="True">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Combo Description"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="#333" />
+                    <Editor x:Name="ComboDescriptionEditor"
+                            Placeholder="Enter combo description"
+                            FontSize="14"
+                            BackgroundColor="#F0F0F0"
+                            HeightRequest="100"
+                            TextColor="#000" />
+                </VerticalStackLayout>
+            </Frame>
 
-            <Label Text="Search Trick to Add" FontAttributes="Bold" />
-<SearchBar x:Name="TrickSearchBar" Placeholder="Type trick name..." TextChanged="OnTrickSearchTextChanged" />
+            <!-- Trick Search -->
+            <Frame Padding="15" BackgroundColor="White" CornerRadius="12" HasShadow="True">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Search Trick to Add"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="#333" />
+                    <SearchBar x:Name="TrickSearchBar"
+                               Placeholder="Type trick name..."
+                               FontSize="14"
+                               TextChanged="OnTrickSearchTextChanged" />
 
-<CollectionView x:Name="TrickSuggestionsView" SelectionMode="Single" SelectionChanged="OnTrickSelected">
-    <CollectionView.ItemTemplate>
-        <DataTemplate>
-            <Label Text="{Binding Name}" Padding="10" />
-        </DataTemplate>
-    </CollectionView.ItemTemplate>
-</CollectionView>
+                    <CollectionView x:Name="TrickSuggestionsView"
+                                    SelectionMode="Single"
+                                    SelectionChanged="OnTrickSelected"
+                                    HeightRequest="120">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame BackgroundColor="#EFEFEF" Padding="10" Margin="0,5" CornerRadius="8">
+                                    <Label Text="{Binding Name}" FontSize="14" TextColor="#333" />
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </Frame>
 
-<Label Text="Selected Tricks" FontAttributes="Bold" />
-<VerticalStackLayout x:Name="SelectedTricksLayout" />
+            <!-- Selected Tricks -->
+            <Frame Padding="15" BackgroundColor="White" CornerRadius="12" HasShadow="True">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Selected Tricks"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="#333" />
+                    <VerticalStackLayout x:Name="SelectedTricksLayout" />
+                </VerticalStackLayout>
+            </Frame>
 
-
-            <Button Text="Save Combo" Clicked="OnSaveComboClicked" BackgroundColor="Green" TextColor="White" />
+            <!-- Save Button -->
+            <Button Text="Save Combo"
+                    Clicked="OnSaveComboClicked"
+                    BackgroundColor="#4CAF50"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    CornerRadius="10"
+                    HeightRequest="50" />
 
         </VerticalStackLayout>
     </ScrollView>

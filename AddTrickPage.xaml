@@ -2,16 +2,57 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TrickingApp.AddTrickPage"
-             Title="Add Trick">
+             Title="Add Trick"
+             BackgroundColor="#F5F5F5">
 
-    <StackLayout Padding="20" Spacing="15">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
 
-        <Label Text="Add a New Trick" FontSize="24" HorizontalOptions="Center" />
+            <!-- Page Header -->
+            <Label Text="Add a New Trick" 
+                   FontSize="28" 
+                   FontAttributes="Bold" 
+                   TextColor="#333" 
+                   HorizontalOptions="Center" />
 
-        <Entry x:Name="TrickNameEntry" Placeholder="Trick Name" />
-        <Editor x:Name="TrickDescriptionEditor" Placeholder="Trick Description" HeightRequest="100" />
+            <!-- Trick Name -->
+            <Frame Padding="15" BackgroundColor="White" CornerRadius="12" HasShadow="True">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Trick Name" FontSize="16" FontAttributes="Bold" TextColor="#333"/>
+                    <Frame BackgroundColor="#F0F0F0" CornerRadius="8" Padding="0" HasShadow="False" HeightRequest="40">
+                        <Entry x:Name="TrickNameEntry" 
+                               Placeholder="Enter trick name"
+                               BackgroundColor="Transparent"
+                               TextColor="#000"
+                               Margin="10,0" />
+                    </Frame>
+                </VerticalStackLayout>
+            </Frame>
 
-        <Button Text="Save Trick" Clicked="OnSaveTrickClicked" />
+            <!-- Trick Description -->
+            <Frame Padding="15" BackgroundColor="White" CornerRadius="12" HasShadow="True">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Trick Description" FontSize="16" FontAttributes="Bold" TextColor="#333"/>
+                    <Frame BackgroundColor="#F0F0F0" CornerRadius="8" Padding="0" HasShadow="False" HeightRequest="120">
+                        <Editor x:Name="TrickDescriptionEditor" 
+                                Placeholder="Enter trick description"
+                                BackgroundColor="Transparent"
+                                TextColor="#000"
+                                Margin="10,0" />
+                    </Frame>
+                </VerticalStackLayout>
+            </Frame>
 
-    </StackLayout>
+            <!-- Save Button -->
+            <Button Text="Save Trick"
+                    BackgroundColor="#28a745"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    CornerRadius="12"
+                    HeightRequest="50"
+                    Clicked="OnSaveTrickClicked" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
 </ContentPage>
