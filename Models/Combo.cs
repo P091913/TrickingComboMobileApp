@@ -11,4 +11,6 @@ public class Combo
     public string Description { get; set; }
 
     public string TrickIds { get; set; } // Comma-separated list of Trick IDs
+    
+    public bool IsFavorite { get; set; }
 }
