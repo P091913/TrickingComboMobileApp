@@ -27,7 +27,7 @@
                             ItemsLayout="HorizontalList"
                             HeightRequest="100"
                             SelectionMode="Single"
-                            SelectionChanged="OnFavoriteSelected"
+                            SelectionChanged="OnComboSelected"
                             HorizontalScrollBarVisibility="Never">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>

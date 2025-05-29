@@ -116,4 +116,6 @@ public partial class ViewCombosPage : ContentPage, INotifyPropertyChanged
         if (sender is CollectionView cv)
             cv.SelectedItem = null;
     }
+    
+
 }
