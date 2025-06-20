@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
-using System.IO; // Required for Path.Combine
-using TrickingApp.Services; // Adjust namespace if your TrickingDatabase is in a different folder
+using System.IO;
+using TrickingApp.Services;
 
 namespace TrickingApp;
 
@@ -17,12 +17,7 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
             });
-
-#if DEBUG
-        builder.Logging.AddDebug();
-#endif
-
-        // Register TrickingDatabase as a singleton service
+        
         builder.Services.AddSingleton<TrickingDatabase>(s =>
         {
             var path = Path.Combine(FileSystem.AppDataDirectory, "tricking.db");

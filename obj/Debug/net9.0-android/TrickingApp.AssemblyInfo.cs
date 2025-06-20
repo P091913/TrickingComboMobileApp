@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TrickingApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+fd4d59837e7fed735022227703f1f9028c3d4a54")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+9fdbd762404954c2c6f027673e621791269c9c2c")]
 [assembly: System.Reflection.AssemblyProductAttribute("TrickingApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TrickingApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

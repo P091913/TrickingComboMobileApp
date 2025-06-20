@@ -1,67 +1,110 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TrickingApp.ComboDetailsPage"
-             Title="Edit Combo">
+             Title="Edit Combo"
+             BackgroundColor="#F8F9FA">
 
-    <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="15">
-            <Label x:Name="ComboTitleLabel" FontAttributes="Bold" FontSize="24" />
-            <Label x:Name="ComboDescriptionLabel" FontSize="14" TextColor="Gray" />
+    <!-- 🟩 NEW: Wrap everything in a Grid with a TapGestureRecognizer -->
+    <Grid>
+        <Grid.GestureRecognizers>
+            <TapGestureRecognizer Tapped="OnBackgroundTapped" />
+        </Grid.GestureRecognizers>
 
-            <Label Text="Add Trick to Combo" FontAttributes="Bold" />
-            <SearchBar x:Name="TrickSearchBar"
-                       Placeholder="Search for a trick..."
-                       TextChanged="OnTrickSearchTextChanged" />
+        <!-- ⬇️ Moved ScrollView into the Grid -->
+        <ScrollView>
+            <VerticalStackLayout Padding="20" Spacing="20">
+                <!-- (rest of your original layout unchanged) -->
 
-            <CollectionView x:Name="TrickSuggestionsView"
-                            SelectionMode="Single"
-                            SelectionChanged="OnTrickSelected">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <VerticalStackLayout Padding="5">
-                            <Label Text="{Binding Name}" FontAttributes="Bold" />
-                            <Label Text="{Binding Description}" FontSize="12" TextColor="Gray" />
-                        </VerticalStackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                <!-- Title & Description -->
+                <Frame BackgroundColor="White" CornerRadius="16" Padding="20" HasShadow="True">
+                    <VerticalStackLayout Spacing="8">
+                        <Label x:Name="ComboTitleLabel"
+                               FontSize="26"
+                               FontAttributes="Bold"
+                               TextColor="#222" />
+                        <Label x:Name="ComboDescriptionLabel"
+                               FontSize="16"
+                               TextColor="#666"
+                               LineBreakMode="WordWrap" />
+                    </VerticalStackLayout>
+                </Frame>
 
-            <Label Text="Current Tricks in Combo:" FontAttributes="Bold" FontSize="18" />
+                <!-- Add Trick -->
+                <Frame BackgroundColor="White" CornerRadius="16" Padding="20" HasShadow="True">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="Add Trick to Combo"
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               TextColor="#111" />
 
-            <!-- New CollectionView for showing current combo tricks with drag reorder -->
-<CollectionView x:Name="ComboTricksView"
-                ItemsSource="{Binding ComboTricks}"
-                SelectionMode="None"
-                HeightRequest="300">
-    <CollectionView.ItemTemplate>
-        <DataTemplate>
-            <HorizontalStackLayout Padding="5" Spacing="10" VerticalOptions="Center">
-                <Label Text="{Binding Name}" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="StartAndExpand" />
-                
-                <Button Text="Up" 
-                        CommandParameter="{Binding .}"
-                        Clicked="OnMoveUpClicked"
-                        WidthRequest="50" />
-                <Button Text="Down" 
-                        CommandParameter="{Binding .}"
-                        Clicked="OnMoveDownClicked"
-                        WidthRequest="50" />
+                        <SearchBar x:Name="TrickSearchBar"
+                                   Placeholder="Search for a trick..."
+                                   FontSize="14"
+                                   TextColor="#333"
+                                   PlaceholderColor="#999"
+                                   BackgroundColor="#F0F2F5"
+                                   TextChanged="OnTrickSearchTextChanged" />
 
-                <Button Text="Remove"
-                        BackgroundColor="Red"
+                        <CollectionView x:Name="TrickSuggestionsView"
+                                        SelectionMode="Single"
+                                        SelectionChanged="OnTrickSelected"
+                                        HeightRequest="150">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame Padding="12" CornerRadius="12" BackgroundColor="#F7F7F7" Margin="0,5" HasShadow="False">
+                                        <VerticalStackLayout Spacing="4">
+                                            <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="16" TextColor="#222"/>
+                                            <Label Text="{Binding Description}" FontSize="13" TextColor="#777" />
+                                        </VerticalStackLayout>
+                                    </Frame>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Current Tricks -->
+                <Frame BackgroundColor="White" CornerRadius="16" Padding="20" HasShadow="True">
+                    <VerticalStackLayout Spacing="12">
+                        <Label Text="Current Tricks in Combo:"
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               TextColor="#111" />
+
+                        <CollectionView x:Name="ComboTricksView"
+                                        ItemsSource="{Binding ComboTricks}"
+                                        SelectionMode="None"
+                                        HeightRequest="300">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame Padding="10" CornerRadius="12" BackgroundColor="#F2F2F2" Margin="0,5" HasShadow="False">
+                                        <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                                            <Label Text="{Binding Name}"
+                                                   FontAttributes="Bold"
+                                                   FontSize="16"
+                                                   VerticalOptions="Center"
+                                                   HorizontalOptions="StartAndExpand" />
+                                            <Button Text="↑" FontSize="14" BackgroundColor="#DDEBFF" TextColor="#007AFF" WidthRequest="40" CornerRadius="10" CommandParameter="{Binding .}" Clicked="OnMoveUpClicked" />
+                                            <Button Text="↓" FontSize="14" BackgroundColor="#DDEBFF" TextColor="#007AFF" WidthRequest="40" CornerRadius="10" CommandParameter="{Binding .}" Clicked="OnMoveDownClicked" />
+                                            <Button Text="✕" FontSize="14" BackgroundColor="#FF3B30" TextColor="White" WidthRequest="60" CornerRadius="10" CommandParameter="{Binding .}" Clicked="OnRemoveTrickClicked" />
+                                        </HorizontalStackLayout>
+                                    </Frame>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Save Button -->
+                <Button Text="Save Combo"
+                        FontSize="18"
+                        BackgroundColor="#34C759"
                         TextColor="White"
-                        CornerRadius="10"
-                        CommandParameter="{Binding .}"
-                        Clicked="OnRemoveTrickClicked" />
-            </HorizontalStackLayout>
-        </DataTemplate>
-    </CollectionView.ItemTemplate>
-</CollectionView>
-
-
-
-            <Button Text="Save Combo" BackgroundColor="Blue" TextColor="White" Clicked="OnSaveClicked" />
-        </VerticalStackLayout>
-    </ScrollView>
+                        CornerRadius="14"
+                        HeightRequest="50"
+                        Clicked="OnSaveClicked"
+                        Margin="0,20,0,0" />
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>

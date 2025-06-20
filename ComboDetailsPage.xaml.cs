@@ -20,10 +20,13 @@ public partial class ComboDetailsPage : ContentPage
         _database = database;
         _combo = combo;
 
-        BindingContext = this; // Important for data binding
+        BindingContext = this;
 
         LoadDataAsync();
     }
+    
+    
+
 
     private async void LoadDataAsync()
     {
@@ -58,6 +61,11 @@ public partial class ComboDetailsPage : ContentPage
 
         TrickSuggestionsView.ItemsSource = filtered;
     }
+    private void OnBackgroundTapped(object sender, EventArgs e)
+    {
+        TrickSearchBar?.Unfocus();
+    }
+
 
     private void OnTrickSelected(object sender, SelectionChangedEventArgs e)
     {
@@ -95,7 +103,7 @@ public partial class ComboDetailsPage : ContentPage
             int index = ComboTricks.IndexOf(trick);
             if (index > 0)
             {
-                ComboTricks.Move(index, index - 1);  // ObservableCollection has Move method
+                ComboTricks.Move(index, index - 1);
             }
         }
     }

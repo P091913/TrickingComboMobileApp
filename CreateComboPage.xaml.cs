@@ -10,12 +10,21 @@ public partial class CreateComboPage : ContentPage
     private readonly TrickingDatabase _database;
     private List<Trick> _allTricks = new();
     private readonly List<Trick> _selectedTricks = new();
+    
+    public CreateComboPage() : this(App.Database)
+    {
+    }
 
     public CreateComboPage(TrickingDatabase database)
     {
         InitializeComponent();
         _database = database;
         LoadTricksAsync();
+        
+        TrickSearchBar.SearchButtonPressed += (s, e) =>
+        {
+            OnTrickSearchTextChanged(s, new TextChangedEventArgs(TrickSearchBar.Text, TrickSearchBar.Text));
+        };
     }
 
     private async void LoadTricksAsync()
@@ -30,7 +39,8 @@ public partial class CreateComboPage : ContentPage
         var filtered = _allTricks
             .Where(t => t.Name.ToLower().Contains(query) && !_selectedTricks.Contains(t))
             .ToList();
-
+        
+        TrickSuggestionsView.ItemsSource = null;
         TrickSuggestionsView.ItemsSource = filtered;
     }
 
@@ -115,4 +125,10 @@ public partial class CreateComboPage : ContentPage
         _selectedTricks.Clear();
         RefreshSelectedTrickList();
     }
+
+    private void TrickSearchBar_SearchButtonPressed(object sender, EventArgs e)
+    {
+        OnTrickSearchTextChanged(sender, new TextChangedEventArgs(TrickSearchBar.Text, TrickSearchBar.Text));
+    }
+
 }

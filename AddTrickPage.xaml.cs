@@ -8,10 +8,10 @@ namespace TrickingApp
     {
         private readonly TrickingDatabase _database;
 
-        public AddTrickPage(TrickingDatabase database)
+        public AddTrickPage()
         {
             InitializeComponent();
-            _database = database;
+            _database = App.Database;
         }
 
         private async void OnSaveTrickClicked(object sender, EventArgs e)

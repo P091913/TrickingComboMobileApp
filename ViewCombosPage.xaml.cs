@@ -37,6 +37,12 @@ public partial class ViewCombosPage : ContentPage, INotifyPropertyChanged
 
     public ICommand ToggleFavoriteCommand { get; }
 
+    // Parameterless constructor for Shell XAML usage
+    public ViewCombosPage() : this(App.Database)
+    {
+    }
+
+    // Main constructor
     public ViewCombosPage(TrickingDatabase database)
     {
         InitializeComponent();
@@ -57,6 +63,8 @@ public partial class ViewCombosPage : ContentPage, INotifyPropertyChanged
 
         FavoriteCombos = new ObservableCollection<Combo>(_allCombos.Where(c => c.IsFavorite));
     }
+
+
 
     private async void ToggleFavorite(Combo combo)
     {
@@ -116,6 +124,4 @@ public partial class ViewCombosPage : ContentPage, INotifyPropertyChanged
         if (sender is CollectionView cv)
             cv.SelectedItem = null;
     }
-    
-
 }

@@ -8,5 +8,5 @@ public class Trick
 
     public string Name { get; set; }
 
-    public string Description { get; set; } // 👈 Add this line
+    public string Description { get; set; }
 }

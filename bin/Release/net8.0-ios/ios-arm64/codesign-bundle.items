@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <_CodesignBundle Include="TrickingApp.app">
+      <CodesignSigningKey>755C61186EA5F36047D6539259EF54CCB3C5AEFC</CodesignSigningKey>
+      <CodesignEntitlements>/Users/jarrettplate/Desktop/NETSummer25/TrickingComboMobileApp/obj/Release/net8.0-ios/ios-arm64/Entitlements.xcent</CodesignEntitlements>
+      <CodesignUseSecureTimestamp></CodesignUseSecureTimestamp>
+      <CodesignAllocate>/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/codesign_allocate</CodesignAllocate>
+      <RequireCodeSigning>true</RequireCodeSigning>
+      <CodesignExtraArgs></CodesignExtraArgs>
+      <CodesignResourceRules></CodesignResourceRules>
+      <CodesignDisableTimestamp>false</CodesignDisableTimestamp>
+      <CodesignKeychain></CodesignKeychain>
+      <CodesignUseHardenedRuntime></CodesignUseHardenedRuntime>
+      <SourceProjectPath>/Users/jarrettplate/Desktop/NETSummer25/TrickingComboMobileApp</SourceProjectPath>
+    </_CodesignBundle>
+  </ItemGroup>
+</Project>

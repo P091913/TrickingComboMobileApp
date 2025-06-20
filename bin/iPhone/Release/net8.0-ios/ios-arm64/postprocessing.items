@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <_PostProcessingItem Include="TrickingApp.app/TrickingApp">
+      <IsAppExtension>false</IsAppExtension>
+      <BCSymbolMapName>TrickingApp.bcsymbolmap</BCSymbolMapName>
+      <NoDSymUtil>false</NoDSymUtil>
+      <dSYMSourcePathExists>false</dSYMSourcePathExists>
+      <NoSymbolStrip>false</NoSymbolStrip>
+      <dSYMInfoPlistRelativePath>TrickingApp.app.dSYM\Contents\Info.plist</dSYMInfoPlistRelativePath>
+      <SymbolFile>/Users/jarrettplate/Desktop/NETSummer25/TrickingComboMobileApp/obj/iPhone/Release/net8.0-ios/ios-arm64/mtouch-symbols.list</SymbolFile>
+      <DSymName>TrickingApp.app.dSYM</DSymName>
+      <SourceProjectPath>/Users/jarrettplate/Desktop/NETSummer25/TrickingComboMobileApp</SourceProjectPath>
+      <IsXPCService></IsXPCService>
+    </_PostProcessingItem>
+  </ItemGroup>
+</Project>

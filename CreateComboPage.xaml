@@ -51,7 +51,8 @@
                     <SearchBar x:Name="TrickSearchBar"
                                Placeholder="Type trick name..."
                                FontSize="14"
-                               TextChanged="OnTrickSearchTextChanged" />
+                               TextChanged="OnTrickSearchTextChanged"
+                               SearchButtonPressed="TrickSearchBar_SearchButtonPressed" />
 
                     <CollectionView x:Name="TrickSuggestionsView"
                                     SelectionMode="Single"

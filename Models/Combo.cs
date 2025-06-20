@@ -10,7 +10,7 @@ public class Combo
 
     public string Description { get; set; }
 
-    public string TrickIds { get; set; } // Comma-separated list of Trick IDs
+    public string TrickIds { get; set; } 
     
     public bool IsFavorite { get; set; }
 }

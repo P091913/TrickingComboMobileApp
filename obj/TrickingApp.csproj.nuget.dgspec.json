@@ -18,20 +18,15 @@
           "/Users/jarrettplate/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net9.0-android",
-          "net9.0-ios"
+          "net8.0-ios"
         ],
         "sources": {
           "/usr/local/share/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net9.0-android35.0": {
-            "targetAlias": "net9.0-android",
-            "projectReferences": {}
-          },
-          "net9.0-ios18.4": {
-            "targetAlias": "net9.0-ios",
+          "net8.0-ios18.0": {
+            "targetAlias": "net8.0-ios",
             "projectReferences": {}
           }
         },
@@ -48,8 +43,8 @@
         "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
-        "net9.0-android35.0": {
-          "targetAlias": "net9.0-android",
+        "net8.0-ios18.0": {
+          "targetAlias": "net8.0-ios",
           "dependencies": {
             "Microsoft.Extensions.Logging.Debug": {
               "target": "Package",
@@ -57,12 +52,16 @@
             },
             "Microsoft.Maui.Controls": {
               "target": "Package",
-              "version": "[9.0.51, )"
+              "version": "[8.0.100, )"
+            },
+            "Microsoft.Maui.Controls.Compatibility": {
+              "target": "Package",
+              "version": "[8.0.100, )"
             },
             "Microsoft.NET.ILLink.Tasks": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[9.0.0, )",
+              "version": "[8.0.11, )",
               "autoReferenced": true
             },
             "sqlite-net-pcl": {
@@ -83,57 +82,20 @@
           "warn": true,
           "downloadDependencies": [
             {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[9.0.5, 9.0.5]"
-            }
-          ],
-          "frameworkReferences": {
-            "Microsoft.Android": {
-              "privateAssets": "all"
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.11, 8.0.11]"
             },
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.101/PortableRuntimeIdentifierGraph.json"
-        },
-        "net9.0-ios18.4": {
-          "targetAlias": "net9.0-ios",
-          "dependencies": {
-            "Microsoft.Extensions.Logging.Debug": {
-              "target": "Package",
-              "version": "[9.0.0, )"
+            {
+              "name": "Microsoft.iOS.Ref.net8.0_18.0",
+              "version": "[18.0.8324, 18.0.8324]"
             },
-            "Microsoft.Maui.Controls": {
-              "target": "Package",
-              "version": "[9.0.51, )"
+            {
+              "name": "Microsoft.iOS.Runtime.ios-arm64.net8.0_18.0",
+              "version": "[18.0.8324, 18.0.8324]"
             },
-            "Microsoft.NET.ILLink.Tasks": {
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[9.0.0, )",
-              "autoReferenced": true
-            },
-            "sqlite-net-pcl": {
-              "target": "Package",
-              "version": "[1.9.172, )"
-            }
-          },
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48",
-            "net481"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "downloadDependencies": [
             {
               "name": "Microsoft.NETCore.App.Ref",
-              "version": "[9.0.5, 9.0.5]"
+              "version": "[8.0.11, 8.0.11]"
             }
           ],
           "frameworkReferences": {
@@ -148,13 +110,7 @@
         }
       },
       "runtimes": {
-        "android-arm64": {
-          "#import": []
-        },
-        "android-x64": {
-          "#import": []
-        },
-        "iossimulator-arm64": {
+        "ios-arm64": {
           "#import": []
         }
       }

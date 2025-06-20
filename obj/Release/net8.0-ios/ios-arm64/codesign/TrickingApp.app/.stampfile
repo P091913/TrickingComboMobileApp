@@ -1,0 +1,1 @@
+-v --force --timestamp=none --sign 755C61186EA5F36047D6539259EF54CCB3C5AEFC --entitlements /Users/jarrettplate/Desktop/NETSummer25/TrickingComboMobileApp/obj/Release/net8.0-ios/ios-arm64/Entitlements.xcent /Users/jarrettplate/Desktop/NETSummer25/TrickingComboMobileApp/bin/Release/net8.0-ios/ios-arm64/TrickingApp.app

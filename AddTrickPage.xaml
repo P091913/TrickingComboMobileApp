@@ -45,12 +45,12 @@
 
             <!-- Save Button -->
             <Button Text="Save Trick"
-                    BackgroundColor="#28a745"
-                    TextColor="White"
-                    FontAttributes="Bold"
-                    CornerRadius="12"
-                    HeightRequest="50"
-                    Clicked="OnSaveTrickClicked" />
+        BackgroundColor="#28a745"
+        TextColor="White"
+        FontAttributes="Bold"
+        HeightRequest="50"
+        Clicked="OnSaveTrickClicked" />
+
 
         </VerticalStackLayout>
     </ScrollView>

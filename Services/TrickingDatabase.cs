@@ -23,11 +23,11 @@ public class TrickingDatabase
     {
         if (combo.Id != 0)
         {
-            return _database.UpdateAsync(combo); // Update existing combo
+            return _database.UpdateAsync(combo); 
         }
         else
         {
-            return _database.InsertAsync(combo); // Insert new combo
+            return _database.InsertAsync(combo);
         }
     }
 

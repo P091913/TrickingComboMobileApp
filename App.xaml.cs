@@ -1,14 +1,18 @@
-﻿namespace TrickingApp;
+﻿using TrickingApp.Models;
+using TrickingApp.Services;
+
+namespace TrickingApp;
 
 public partial class App : Application
 {
-	public App()
-	{
-		InitializeComponent();
-	}
+    private static TrickingDatabase _database;
+    public static TrickingDatabase Database =>
+        _database ??= new TrickingDatabase(
+            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "tricking.db3"));
 
-	protected override Window CreateWindow(IActivationState? activationState)
-	{
-		return new Window(new AppShell());
-	}
+    public App()
+    {
+        InitializeComponent();
+        MainPage = new AppShell();
+    }
 }
